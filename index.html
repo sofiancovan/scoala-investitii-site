@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Școala de Investiții</title>
+    <title>Școala de Investiții - Curs Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1527,6 +1527,39 @@ section.hero#landing .hero-cta{
   text-shadow: 0 10px 24px rgba(0,0,0,0.7);
 }
 }
+/* ===== FIX MODAL PE MOBIL (vizibilitate) ===== */
+@media (max-width: 768px){
+
+.modal{
+  background: rgba(0,0,0,0.85) !important; /* overlay mai închis */
+  backdrop-filter: none !important;
+}
+
+.modal-content{
+  background: rgba(15,20,35,0.96) !important; /* aproape solid */
+  backdrop-filter: none !important;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.85) !important;
+}
+
+/* text mai clar */
+.modal-content h2,
+.modal-content p,
+.modal-content label{
+  color: #ffffff !important;
+}
+
+/* inputuri */
+.modal-content input{
+  background: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+}
+
+.modal-content input::placeholder{
+  color: rgba(255,255,255,0.65) !important;
+}
+}
 
     </style>
   <div class="section-divider"></div>
@@ -2000,5 +2033,3 @@ function login(e) {
     </script>
 </body>
 </html>
-
-
