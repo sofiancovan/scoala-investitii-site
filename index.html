@@ -1482,6 +1482,51 @@ section.hero#landing .hero-cta{
   left: -80px !important;
   right: -80px !important;
 }
+/* ===== MOBILE: FADE GARANTAT PESTE POZĂ ===== */
+@media (max-width: 768px){
+
+/* container poză */
+#product .product-image{
+  position: relative;
+  overflow: hidden;
+}
+
+/* FADE layer (nu depinde de overlay) */
+#product .product-image::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: 72%;                 /* cât urcă fade-ul pe poză */
+  z-index: 1;
+  pointer-events:none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,30,0) 0%,
+    rgba(10,15,30,0.25) 25%,
+    rgba(10,15,30,0.70) 65%,
+    rgba(10,15,30,0.95) 100%
+  );
+}
+
+/* overlay-ul cu text stă deasupra fade-ului */
+#product .product-image .profile-overlay{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  z-index: 2;
+
+  /* IMPORTANT: îl faci transparent ca să nu “anuleze” fade-ul */
+  background: transparent !important;
+  backdrop-filter: none !important;
+
+  padding: 18px 16px !important;
+}
+
+/* text puțin mai “crisp” */
+#product .product-image .profile-overlay strong{
+  text-shadow: 0 10px 24px rgba(0,0,0,0.7);
+}
+}
 
     </style>
   <div class="section-divider"></div>
@@ -1730,7 +1775,7 @@ section.hero#landing .hero-cta{
 
     <footer style="background: rgba(10,15,30,0.95); backdrop-filter: blur(20px); color: rgba(255,255,255,0.8); text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container">
-            <p>&copy; 2026 Școala de Investiții. Toate drepturile rezervate. <span style="color: var(--neon);">🔒 Securizat Enterprise</span></p>
+            <p>&copy; 2026 Școala de Investiții. Toate drepturile rezervate. <span style="color: var(--neon);">🔒 Securizat </span></p>
         </div>
     </footer>
 
