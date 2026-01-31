@@ -903,6 +903,43 @@ section.hero#landing .hero-cta{
     <script>
         let currentSession = null;
         let sessionTimeout = null;
+
+        function initHamburgerMenu(){
+            const header = document.querySelector('header');
+            const toggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!header || !toggle || !navLinks) return;
+
+            // prevenim dublarea listener-elor pe același buton
+            const freshToggle = toggle.cloneNode(true);
+            toggle.parentNode.replaceChild(freshToggle, toggle);
+
+            freshToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                header.classList.toggle('menu-open');
+                const opened = header.classList.contains('menu-open');
+                freshToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+            });
+
+            // inchide meniul cand apesi pe un link
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    header.classList.remove('menu-open');
+                    freshToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // inchide meniul cand apesi in afara lui
+            document.addEventListener('click', function (e) {
+                if (!header.classList.contains('menu-open')) return;
+                const isClickInside = header.contains(e.target);
+                if (!isClickInside) {
+                    header.classList.remove('menu-open');
+                    freshToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
         
         window.addEventListener('load', function() {
             const savedSession = localStorage.getItem('authSession');
@@ -911,6 +948,8 @@ section.hero#landing .hero-cta{
                 currentSession = savedSession;
                 sessionTimeout = parseInt(savedTimeout);
                 autoLogin();
+            } else {
+                initHamburgerMenu();
             }
         });
         
@@ -951,13 +990,22 @@ section.hero#landing .hero-cta{
         function autoLogin() {
             document.querySelector('header nav').innerHTML = `
                 <a href="#landing" class="logo-link">
-                    <img src="https://via.placeholder.com/220x70/ffd700/1a3c34?text=%F0%9F%92%8E+Investiții" alt="Școala de Investiții" class="logo-img">
+                    <img src="logo.png" alt="Școala de Investiții" class="logo-img">
                 </a>
+
+                <button class="nav-toggle" aria-label="Deschide meniul" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
                 <ul class="nav-links">
-                    <li><a href="#dashboard" onclick="showDashboard()">Dashboard</a></li>
+                    <li><a href="./dashboard.html" onclick="showDashboard()">Dashboard</a></li>
                     <li><a href="#" onclick="logout()" style="color: #ff6b6b !important;">Logout</a></li>
                 </ul>
             `;
+
+            initHamburgerMenu();
         }
         
         function signup(e) {
@@ -1070,40 +1118,6 @@ function login(e) {
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // ===== MOBILE HAMBURGER TOGGLE =====
-        (function () {
-            const header = document.querySelector('header');
-            const toggle = document.querySelector('.nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            if (!header || !toggle || !navLinks) return;
-
-            toggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                header.classList.toggle('menu-open');
-                const opened = header.classList.contains('menu-open');
-                toggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
-            });
-
-            // inchide meniul cand apesi pe un link
-            navLinks.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    header.classList.remove('menu-open');
-                    toggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-
-            // inchide meniul cand apesi in afara lui
-            document.addEventListener('click', function (e) {
-                if (!header.classList.contains('menu-open')) return;
-                const isClickInside = header.contains(e.target);
-                if (!isClickInside) {
-                    header.classList.remove('menu-open');
-                    toggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        })();
     </script>
 </body>
 </html>
