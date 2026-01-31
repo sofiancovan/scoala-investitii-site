@@ -616,6 +616,651 @@ section.hero#landing .hero-cta{
 }
 
 }
+/* =========================
+   PRODUCT SECTION – PREMIUM UPGRADE
+   (pune la finalul CSS)
+========================= */
+
+/* grid mai “tight” + aliniere perfectă */
+#product .product-grid{
+  gap: clamp(1.5rem, 4vw, 3.2rem) !important;
+  align-items: stretch !important;
+}
+
+/* card stânga: border mai “fin”, shadow mai realist, fundal mai bogat */
+#product .glass-card{
+  max-width: 560px !important;
+  width: 100%;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.06)
+  ) !important;
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.55),
+    0 2px 0 rgba(255,255,255,0.06) inset !important;
+}
+
+/* titlu + preț: spacing și proporții */
+#product .glass-card h3{
+  letter-spacing: -0.02em;
+  margin-bottom: 1.35rem !important;
+}
+
+#product .glass-card .price{
+  font-size: clamp(3.2rem, 4.2vw, 4.6rem) !important;
+  margin-bottom: 1.8rem !important;
+  letter-spacing: -0.02em;
+}
+
+/* listă beneficii: aliniere mai curată + text mai lizibil */
+#product .glass-card ul{
+  margin-bottom: 2rem !important;
+}
+
+#product .glass-card ul li{
+  gap: 0.95rem !important;
+  padding: 0.65rem 0 !important;
+  align-items: flex-start !important;
+}
+
+#product .glass-card ul li span{
+  color: rgba(255,255,255,0.90) !important;
+}
+
+/* icon check: consistent și “crisp” */
+#product .glass-card ul li i{
+  margin-top: 0.28rem !important;
+  filter: drop-shadow(0 0 12px rgba(0,255,136,0.25));
+}
+
+/* buton checkout: mai premium + hover control */
+#product .glass-card .btn{
+  border-radius: 999px !important;
+  padding: 1.15rem 1.2rem !important;
+  justify-content: center !important;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 18px 40px rgba(0,212,255,0.25),
+    0 10px 28px rgba(0,255,136,0.18) !important;
+  transform: translateY(0);
+}
+
+#product .glass-card .btn:hover{
+  transform: translateY(-3px);
+  box-shadow:
+    0 26px 60px rgba(0,212,255,0.32),
+    0 18px 45px rgba(0,255,136,0.22) !important;
+}
+
+/* panou dreapta: să pară “feature visual”, nu placeholder */
+#product .product-image{
+  border-radius: 28px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+
+  background:
+    radial-gradient(900px 500px at 30% 35%, rgba(0,255,136,0.18), transparent 55%),
+    radial-gradient(700px 420px at 70% 60%, rgba(0,212,255,0.15), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)) !important;
+
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.55),
+    0 2px 0 rgba(255,255,255,0.05) inset !important;
+
+  min-height: 520px;
+}
+
+/* icon din panoul dreapta: mai “balanced” */
+#product .product-image .chart-icon{
+  font-size: clamp(5.5rem, 7vw, 7.5rem) !important;
+  opacity: 0.92;
+  transform: translateY(-6px);
+}
+
+/* MOBILE: proporții mai bune (să nu fie panoul uriaș) */
+@media (max-width: 768px){
+  #product .product-image{
+    min-height: 240px !important;
+    height: 240px !important;
+  }
+  #product .glass-card{
+    max-width: 100% !important;
+  }
+}
+
+/* === FIX FINAL: cardul din stânga să NU se întindă pe verticală === */
+#product .product-grid{
+  align-items: start !important;   /* oprește stretch-ul pe rând */
+}
+
+#product .glass-card{
+  height: auto !important;         /* anulează height:100% din .glass-card */
+  align-self: start !important;    /* îl ține sus */
+}
+
+/* panoul din dreapta mai mic (desktop) */
+#product .product-image{
+  min-height: 420px !important;    /* era 520 */
+}
+#product .glass-card{
+  padding: 1.6rem !important;      /* era 2rem/2.5rem */
+}
+
+#product .glass-card h3{
+  margin-bottom: 1.2rem !important;
+}
+
+#product .glass-card .price{
+  margin-bottom: 1.4rem !important;
+}
+
+#product .glass-card ul{
+  margin-bottom: 1.4rem !important;
+}
+
+#product .glass-card ul li{
+  margin-bottom: 0.85rem !important;
+}
+/* === PRODUCT CARD – COMPACT VERSION (VERTICAL FIX) === */
+#product .glass-card{
+  padding: 1.5rem !important;   /* era 2–2.5rem */
+}
+
+/* titlu */
+#product .glass-card h3{
+  margin-bottom: 1rem !important;
+}
+
+/* preț */
+#product .glass-card .price{
+  margin-bottom: 1.2rem !important;
+  line-height: 1 !important;
+}
+
+/* listă beneficii */
+#product .glass-card ul{
+  margin-bottom: 1.3rem !important;
+}
+
+/* fiecare beneficiu */
+#product .glass-card ul li{
+  margin-bottom: 0.75rem !important; /* era ~1.05 */
+  gap: 0.75rem !important;
+}
+
+/* text secundar (descriere mică) */
+#product .glass-card ul li span span:last-child{
+  margin-top: 0.12rem !important;
+  font-size: 0.92rem !important;
+  line-height: 1.4 !important;
+}
+
+/* buton */
+#product .glass-card .btn{
+  padding: 1rem 1.2rem !important;
+}
+/* ===== PROFILE CARD (dreapta – poză Sofian) ===== */
+.profile-card{
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+  min-height: 520px;
+  border-radius: 28px;
+
+  background: rgba(255,255,255,0.06);
+}
+
+/* poza */
+.profile-card .profile-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.02);
+  transition: transform 0.6s ease;
+}
+
+/* overlay jos */
+.profile-card .profile-overlay{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 1.4rem 1.6rem;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,30,0.0),
+    rgba(10,15,30,0.85)
+  );
+
+  backdrop-filter: blur(6px);
+}
+
+/* nume */
+.profile-card .profile-overlay strong{
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+/* titlu */
+.profile-card .profile-overlay span{
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.78);
+}
+
+/* hover elegant */
+.profile-card:hover .profile-image{
+  transform: scale(1.08);
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 768px){
+  .profile-card{
+    min-height: 260px !important;
+  }
+
+  .profile-card .profile-overlay strong{
+    font-size: 1.05rem;
+  }
+
+  .profile-card .profile-overlay span{
+    font-size: 0.85rem;
+  }
+}
+/* ===== PRODUCT: card dreapta egal pe verticală cu stânga ===== */
+#product .product-grid{
+  align-items: stretch !important; /* nu center */
+}
+
+#product .product-grid > .glass-card{
+  height: 100% !important;
+}
+
+/* Suprascrie CSS-ul vechi din .product-image (care îl face fix 400px) */
+#product .product-grid > .product-image{
+  height: 100% !important;        /* egal cu stânga */
+  min-height: 0 !important;       /* scoate min-height */
+  align-self: stretch !important; /* îl întinde pe înălțime */
+
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+
+  border-radius: 28px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+
+  background: rgba(255,255,255,0.05) !important;
+
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.55),
+    0 2px 0 rgba(255,255,255,0.05) inset !important;
+}
+
+/* Imaginea: full cover pe aceeași înălțime ca stânga */
+#product .product-image .profile-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay-ul tău */
+#product .product-image .profile-overlay{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 22px 22px;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,30,0.0) 0%,
+    rgba(10,15,30,0.55) 35%,
+    rgba(10,15,30,0.92) 100%
+  );
+
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+#product .product-image .profile-overlay strong{
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.98);
+  text-shadow: 0 12px 28px rgba(0,0,0,0.6);
+}
+
+#product .product-image .profile-overlay span{
+  display: block;
+  margin-top: 6px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.78);
+}
+
+/* MOBILE: pe telefon NU le forțăm egale */
+@media (max-width: 768px){
+  #product .product-grid > .glass-card{
+    height: auto !important;
+  }
+
+  #product .product-grid > .product-image{
+    height: 260px !important;   /* arată bine pe mobil */
+  }
+}
+/* ===== PROFILE OVERLAY – FADE PORNEȘTE MULT MAI SUS ===== */
+#product .product-image .profile-overlay{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 34px 26px;
+
+  text-align: center;
+
+  /* FADE începe de la ~45% din poză */
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,30,0.0) 0%,
+    rgba(10,15,30,0.20) 20%,
+    rgba(10,15,30,0.45) 40%,
+    rgba(10,15,30,0.75) 65%,
+    rgba(10,15,30,0.95) 100%
+  );
+
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* NUME – mai dominant */
+#product .product-image .profile-overlay strong{
+  display: block;
+  font-size: 1.95rem;          /* mai mare */
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.98);
+  text-shadow: 0 18px 40px rgba(0,0,0,0.75);
+}
+
+/* PROFESIE – clară, dar secondary */
+#product .product-image .profile-overlay span{
+  display: block;
+  margin-top: 8px;
+  font-size: 1.18rem;         /* mai mare */
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.03em;
+}
+@media (max-width: 768px){
+  #product .product-grid > .product-image{
+    height: 260px !important;   /* arată bine pe mobil */
+  }
+}
+/* ===== PRODUCT IMAGE MOBILE – FIX FINAL ===== */
+@media (max-width: 768px){
+
+/* containerul pozei */
+#product .product-grid > .product-image{
+  height: 320px !important;      /* mai frumos pe mobil (nu mic de tot) */
+  border-radius: 22px !important;
+}
+
+/* cum se crop-uiește poza pe mobil (să nu îți taie capul/toracele aiurea) */
+#product .product-image .profile-image{
+  object-position: center top !important; /* încearcă top ca să fie “mai sus” */
+}
+
+/* overlay: fade mai puternic + mai sus */
+#product .product-image .profile-overlay{
+  padding: 18px 16px !important;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,30,0.0) 0%,
+    rgba(10,15,30,0.25) 25%,
+    rgba(10,15,30,0.70) 70%,
+    rgba(10,15,30,0.95) 100%
+  ) !important;
+
+  backdrop-filter: blur(10px) !important;
+}
+
+/* text: puțin mai mic pe mobil ca să nu “iasă” */
+#product .product-image .profile-overlay strong{
+  font-size: 1.45rem !important;
+  line-height: 1.05 !important;
+}
+
+#product .product-image .profile-overlay span{
+  font-size: 1.02rem !important;
+  margin-top: 4px !important;
+}
+}
+/* =========================
+   REVIEWS SECTION – FUTURIST GLASS
+========================= */
+.reviews-section{
+  padding: 6.5rem 0 !important;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-section::before{
+  content:"";
+  position:absolute;
+  inset:-120px -80px;
+  background:
+    radial-gradient(800px 420px at 20% 30%, rgba(0,255,136,0.10), transparent 60%),
+    radial-gradient(760px 420px at 80% 60%, rgba(0,212,255,0.10), transparent 60%),
+    radial-gradient(520px 320px at 50% 85%, rgba(255,215,0,0.06), transparent 65%);
+  filter: blur(0px);
+  z-index: 0;
+}
+
+.reviews-section .container{
+  position: relative;
+  z-index: 2;
+}
+
+.reviews-title{
+  font-size: 3rem !important;
+  text-align: center;
+  margin-bottom: 0.85rem;
+  font-weight: 900;
+  background: var(--secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviews-subtitle{
+  text-align:center;
+  max-width: 820px;
+  margin: 0 auto 2.8rem;
+  color: rgba(255,255,255,0.82);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.reviews-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.7rem;
+  align-items: stretch;
+}
+
+.review-card{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.05)
+  );
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 26px;
+  padding: 1.7rem 1.6rem;
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.45),
+    0 2px 0 rgba(255,255,255,0.06) inset;
+  backdrop-filter: blur(18px);
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.45s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::after{
+  content:"";
+  position:absolute;
+  top:-60px;
+  right:-60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(0,212,255,0.18), transparent 65%);
+  filter: blur(2px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.review-card:hover{
+  transform: translateY(-10px);
+  box-shadow:
+    0 38px 95px rgba(0,0,0,0.55),
+    0 2px 0 rgba(255,255,255,0.07) inset;
+}
+
+.review-top{
+  display:flex;
+  align-items:center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.review-avatar{
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 900;
+  color: rgba(10,15,30,0.95);
+  background: linear-gradient(45deg, rgba(0,212,255,0.95), rgba(0,255,136,0.95));
+  box-shadow: 0 14px 30px rgba(0,212,255,0.18);
+  flex: 0 0 auto;
+}
+
+.review-meta{
+  display:flex;
+  flex-direction:column;
+  line-height: 1.2;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.review-meta strong{
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.96);
+  letter-spacing: -0.01em;
+}
+
+.review-meta span{
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.70);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-stars{
+  display:flex;
+  gap: 4px;
+  color: #ffd700;
+  filter: drop-shadow(0 0 16px rgba(255,215,0,0.25));
+}
+
+.review-text{
+  color: rgba(255,255,255,0.86);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin: 0 0 1.25rem;
+}
+
+.review-foot{
+  display:flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.review-tag{
+  display:inline-flex;
+  align-items:center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .reviews-grid{
+    grid-template-columns: 1fr;
+  }
+  .review-meta span{
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px){
+  .reviews-section{
+    padding: 5rem 0 !important;
+  }
+  .reviews-title{
+    font-size: 2.15rem !important;
+  }
+  .reviews-subtitle{
+    font-size: 0.98rem;
+    margin-bottom: 2rem;
+    padding: 0 6px;
+  }
+  .review-card{
+    backdrop-filter: none !important; /* performanță pe mobil */
+    padding: 1.35rem 1.25rem;
+    border-radius: 22px;
+  }
+  .review-text{
+    font-size: 0.98rem;
+  }
+}
 
 
     </style>
@@ -658,7 +1303,7 @@ section.hero#landing .hero-cta{
                 Un ecosistem educațional complet care te ghidează de la fundamentele financiare până la construirea unui portofoliu solid.
             </p>
             <a href="#product" class="btn hero-cta">
-                <i class="fas fa-rocket"></i> Acces integral - 1499 RON
+                <i class="fas fa-rocket"></i> Cumpara acces in platforma
             </a>
         </div>
     
@@ -685,7 +1330,7 @@ section.hero#landing .hero-cta{
         <div class="about-grid">
           <div class="about-item">
             <i class="fas fa-check-circle"></i>
-            <span><strong>Curriculum pe 6 luni</strong> — lecții și materiale structurate, ca să știi exact ce faci în fiecare etapă.</span>
+            <span><strong>Program de 6 luni</strong> — lecții și materiale structurate, ca să știi exact ce faci în fiecare etapă.</span>
           </div>
   
           <div class="about-item">
@@ -724,7 +1369,7 @@ section.hero#landing .hero-cta{
             <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
                 <i class="fas fa-calendar-check" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #00d4ff; display: block;"></i>
                 <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">Program structurat 6 luni</h3>
-                <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Curriculum pas cu pas care te duce de la bază la strategie: lecții, exemple reale și plan clar de acțiune.</p>
+                <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Program pas cu pas care te duce de la bază la strategie: lecții, exemple reale și plan clar de acțiune.</p>
             </div>
 
             <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
@@ -785,53 +1430,242 @@ section.hero#landing .hero-cta{
   transform: scale(1.06);
   background: rgba(255,255,255,0.14);
 }
+/* ===== FADE REAL ÎNTRE PRODUCT -> REVIEWS (GARANTAT) ===== */
+
+/* scoate patch-urile care “taie” fundalul */
+#product{
+  background: transparent !important;
+  padding-bottom: 6.5rem !important; /* păstrează spațiu ok */
+}
+
+.reviews-section{
+  background: transparent !important;
+  padding-top: 6.5rem !important;
+}
+
+
+/* opțional: pe mobil, fade puțin mai mic */
+@media (max-width: 768px){
+  .section-blend{
+    height: 140px;
+    margin-top: -70px;
+    margin-bottom: -70px;
+  }
+}
+#product, .reviews-section{
+  background-image: none !important;
+}
+#product { padding: 8rem 0 !important; }
+/* apropie titlul din PRODUCT de divider-ul de sus */
+#product{
+  padding-top: 2rem !important;  /* scade de la 8rem */
+  padding-bottom: 2 rem !important; /* păstrezi jos dacă vrei */
+}
+#product{ padding-bottom: 2.5rem !important; }
+.reviews-section{ padding-top: 2.5rem !important; }
+
+.section-blend{
+  height: 90px !important;
+  margin-top: -45px !important;
+  margin-bottom: -45px !important;
+}
+/* 1) NU mai tăia glows la margine */
+.reviews-section{
+  overflow: visible !important;
+  background: transparent !important; /* opțional, dar ajută la blend */
+}
+
+/* 2) împinge glow-ul deasupra începutului secțiunii */
+.reviews-section::before{
+  top: -220px !important;
+  bottom: -120px !important;
+  left: -80px !important;
+  right: -80px !important;
+}
 
     </style>
-
+  <div class="section-divider"></div>
     <!-- PRODUCT -->
     <section id="product">
         <div class="container">
-            <h2>Scoala de Investitii</h2>
+            <h2>Școala de Investiții</h2>
             <div class="product-grid">
-                <div class="glass-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; max-width: 500px;">
+                <div class="glass-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2rem; max-width: 440px;">
                     <h3 style="font-size: 2rem; margin-bottom: 2rem; color: white; text-align: center;">Acces integral</h3>
                     <div class="price" style="font-size: 4rem; font-weight: 900; color: #ffd700; text-align: center; margin-bottom: 2.5rem;">1499 RON</div>
 
                     <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem;">
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.5;">
-                            <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.2rem;"></i>
-                            <span style="flex: 1;">📚 Program educațional structurat pe 6 luni</span>
+                        <li style="margin-bottom: 1.05rem; display: flex; align-items: flex-start; gap: 0.95rem; font-size: 1rem; line-height: 1.45; text-align: left;">
+                          <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.35rem;"></i>
+                          <span style="flex: 1; display: block; text-align: left;">
+                            <span style="display:block; font-weight: 800; color: rgba(255,255,255,0.98); letter-spacing: -0.01em;">
+                              Program educațional pe 6 luni
+                            </span>
+                            <span style="display:block; margin-top: 0.2rem; color: rgba(255,255,255,0.72); font-size: 0.95rem;">
+                              Curriculum structurat, progres clar, de la bază la strategie.
+                            </span>
+                          </span>
                         </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.5;">
-                            <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.2rem;"></i>
-                            <span style="flex: 1;">🧩 4 Module esențiale: Educație Financiară, Psihologia Investitorului, Istoria Banilor și Investițiilor, Investițiile Pas cu Pas</span>
+                      
+                        <li style="margin-bottom: 1.05rem; display: flex; align-items: flex-start; gap: 0.95rem; font-size: 1rem; line-height: 1.45; text-align: left;">
+                          <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.35rem;"></i>
+                          <span style="flex: 1; display: block; text-align: left;">
+                            <span style="display:block; font-weight: 800; color: rgba(255,255,255,0.98); letter-spacing: -0.01em;">
+                              4 module esențiale
+                            </span>
+                            <span style="display:block; margin-top: 0.2rem; color: rgba(255,255,255,0.72); font-size: 0.95rem;">
+                              Educație financiară, psihologia investitorului, istoria banilor și investiții pas cu pas.
+                            </span>
+                          </span>
                         </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.5;">
-                            <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.2rem;"></i>
-                            <span style="flex: 1;">📞 1 Apel lunar individual cu Sofian Covan</span>
+                      
+                        <li style="margin-bottom: 1.05rem; display: flex; align-items: flex-start; gap: 0.95rem; font-size: 1rem; line-height: 1.45; text-align: left;">
+                          <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.35rem;"></i>
+                          <span style="flex: 1; display: block; text-align: left;">
+                            <span style="display:block; font-weight: 800; color: rgba(255,255,255,0.98); letter-spacing: -0.01em;">
+                              1 apel lunar individual
+                            </span>
+                            <span style="display:block; margin-top: 0.2rem; color: rgba(255,255,255,0.72); font-size: 0.95rem;">
+                              Ghidaj personalizat cu Sofian Covan pentru direcție și disciplină.
+                            </span>
+                          </span>
                         </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.5;">
-                            <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.2rem;"></i>
-                            <span style="flex: 1;">🎓 Seminar săptămânal aplicat pe piețe și investiții</span>
+                      
+                        <li style="margin-bottom: 1.05rem; display: flex; align-items: flex-start; gap: 0.95rem; font-size: 1rem; line-height: 1.45; text-align: left;">
+                          <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.35rem;"></i>
+                          <span style="flex: 1; display: block; text-align: left;">
+                            <span style="display:block; font-weight: 800; color: rgba(255,255,255,0.98); letter-spacing: -0.01em;">
+                              Seminar săptămânal aplicat
+                            </span>
+                            <span style="display:block; margin-top: 0.2rem; color: rgba(255,255,255,0.72); font-size: 0.95rem;">
+                              Analiză practică pe piețe, decizii și management de risc.
+                            </span>
+                          </span>
                         </li>
-                        <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1rem; line-height: 1.5;">
-                            <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.2rem;"></i>
-                            <span style="flex: 1;">🛡️ Garanție 100% Refund 60 zile</span>
+                      
+                        <li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 0.95rem; font-size: 1rem; line-height: 1.45; text-align: left;">
+                          <i class="fas fa-check-circle" style="color: #00ff88; font-size: 1.2rem; flex-shrink: 0; margin-top: 0.35rem;"></i>
+                          <span style="flex: 1; display: block; text-align: left;">
+                            <span style="display:block; font-weight: 800; color: rgba(255,255,255,0.98); letter-spacing: -0.01em;">
+                              Garanție 60 de zile
+                            </span>
+                            <span style="display:block; margin-top: 0.2rem; color: rgba(255,255,255,0.72); font-size: 0.95rem;">
+                              Refund 100% conform condițiilor, fără risc pentru tine.
+                            </span>
+                          </span>
                         </li>
-                    </ul>
+                      </ul>
+                      
 
                     <a href="#" class="btn" onclick="showModal('checkout')" style="width: 100%; padding: 1.2rem; font-size: 1.1rem; background: linear-gradient(45deg, #00d4ff, #00ff88);">
-                        <i class="fas fa-lock" style="margin-right: 0.5rem;"></i>SECURE CHECKOUT
+                        <i class="fas fa-lock" style="margin-right: 0.5rem;"></i>Achizitioneaza accesul
                     </a>
                 </div>
 
                 <div class="product-image">
-                    <i class="fas fa-chart-line chart-icon"></i>
-                </div>
+                    <img src="sofian.jpg" alt="Sofian" class="profile-image">
+                    <div class="profile-overlay">
+                      <strong>Sofian Covan</strong>
+                      <span>Investitor Multi-Asset</span>
+                    </div>
+                  </div>
+                  
+                
             </div>
         </div>
     </section>
+<!-- REVIEWS -->
 
+
+<div class="section-blend"></div>
+
+<section id="reviews" class="reviews-section">
+
+
+    <div class="container">
+      <h2 class="reviews-title">Ce spun cursanții</h2>
+      <p class="reviews-subtitle">
+        Review-uri reale despre progres, claritate și disciplină.
+      </p>
+  
+      <div class="reviews-grid">
+  
+        <!-- Review 1 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">A</div>
+            <div class="review-meta">
+              <strong>Andrei M.</strong>
+              <span>Portofoliu long-term • 3 luni</span>
+            </div>
+            <div class="review-stars" aria-label="5 stele">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+  
+          <p class="review-text">
+            În sfârșit am o strategie clară. Mi-am făcut reguli de intrare/ieșire și nu mai iau decizii pe emoții.
+            Partea de risk management e aur.
+          </p>
+  
+          <div class="review-foot">
+            <span class="review-tag"><i class="fas fa-shield-alt"></i> Risk control</span>
+            <span class="review-tag"><i class="fas fa-chart-pie"></i> Portofoliu</span>
+          </div>
+        </article>
+  
+        <!-- Review 2 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">M</div>
+            <div class="review-meta">
+              <strong>Maria D.</strong>
+              <span>Începător • 6 săptămâni</span>
+            </div>
+            <div class="review-stars" aria-label="5 stele">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+  
+          <p class="review-text">
+            Super structurat. Nu m-am simțit pierdută nicio clipă. Înțeleg ce fac, de ce fac și cum îmi protejez capitalul.
+            Exact ce căutam.
+          </p>
+  
+          <div class="review-foot">
+            <span class="review-tag"><i class="fas fa-route"></i> Traseu clar</span>
+            <span class="review-tag"><i class="fas fa-brain"></i> Psihologie</span>
+          </div>
+        </article>
+  
+        <!-- Review 3 -->
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">R</div>
+            <div class="review-meta">
+              <strong>Radu S.</strong>
+              <span>Investitor activ • 2 luni</span>
+            </div>
+            <div class="review-stars" aria-label="5 stele">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+  
+          <p class="review-text">
+            Seminarul săptămânal a făcut diferența. E practic, fără povești. Mi-am corectat greșelile, am redus riscul
+            și am devenit constant.
+          </p>
+  
+          <div class="review-foot">
+            <span class="review-tag"><i class="fas fa-video"></i> Live</span>
+            <span class="review-tag"><i class="fas fa-bolt"></i> Practic</span>
+          </div>
+        </article>
+  
+      </div>
+    </div>
+  </section>
+  
     <!-- MODALS -->
     <div id="signup-modal" class="modal">
         <div class="modal-content">
