@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursuri - Școala de Investiții</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #0a0f1e; 
+            --secondary: linear-gradient(135deg, #ffd700, #ffed4e); 
+            --accent: #00d4ff; 
+            --neon: #00ff88; 
+            --glass: rgba(255,255,255,0.1); 
+            --bg: linear-gradient(135deg, #0a0f1e 0%, #1a1f2e 50%, #0f141e 100%);
+            --text: #e2e8f0;
+            --shadow: 0 35px 60px -12px rgba(0,0,0,0.6);
+            --success: rgba(16,185,129,0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *::selection { background: var(--accent); color: white; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* PARTICULE */
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(0,255,136,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,237,78,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: particles 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes particles {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(10,15,30,0.97); 
+            backdrop-filter: blur(25px); 
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            z-index: 1000; padding: 1rem 0;
+        }
+        .nav { 
+            max-width: 1400px; margin: 0 auto; 
+            padding: 0 2rem; display: flex; 
+            align-items: center; justify-content: space-between;
+            min-height: 70px;
+        }
+        .nav-logo { 
+            display: flex; align-items: center; gap: 1rem;
+            text-decoration: none; font-weight: 700; font-size: 1.3rem;
+            background: var(--secondary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-actions {
+            display: flex; gap: 1rem; align-items: center;
+        }
+        .nav-btn {
+            padding: 0.8rem 1.8rem; border-radius: 50px; 
+            background: linear-gradient(45deg, var(--accent), var(--neon));
+            color: white; text-decoration: none; font-weight: 600;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,212,255,0.4); }
+
+        /* MAIN LAYOUT */
+        .main-container {
+            max-width: 1400px; margin: 0 auto; padding: 140px 2rem 4rem; display: grid;
+            grid-template-columns: 320px 1fr; gap: 2rem;
+        }
+
+        /* SIDEBAR MODULES */
+        .sidebar {
+            background: rgba(255,255,255,0.08); 
+            backdrop-filter: blur(35px); 
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px; padding: 2rem; height: fit-content;
+            position: sticky; top: 140px;
+        }
+        .module-category {
+            margin-bottom: 2rem;
+        }
+        .module-title {
+            font-size: 1.3rem; font-weight: 700; color: white;
+            margin-bottom: 1.5rem; padding-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .submodule {
+            display: flex; align-items: center; gap: 1rem; padding: 1rem;
+            border-radius: 16px; text-decoration: none; color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease; margin-bottom: 0.5rem; font-weight: 500;
+        }
+        .submodule:hover, .submodule.active {
+            background: rgba(255,255,255,0.15); color: white;
+            transform: translateX(8px); border: 1px solid var(--neon);
+        }
+        .submodule-icon { font-size: 1.2rem; width: 24px; }
+
+        /* CONTENT DREAPTA */
+        .content {
+            background: rgba(255,255,255,0.06); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 24px; padding: 3rem; min-height: 600px;
+        }
+        .lesson-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem; border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .lesson-icon { font-size: 2.5rem; color: var(--neon); }
+        .lesson-title { font-size: 2rem; font-weight: 700; }
+        .lesson-video { width: 100%; height: 350px; border-radius: 20px; margin-bottom: 2rem; }
+        .lesson-text { line-height: 1.8; font-size: 1.1rem; }
+        .lesson-text h3 { color: white; font-size: 1.4rem; margin: 2rem 0 1rem; }
+        .lesson-text p { margin-bottom: 1.5rem; }
+
+        /* MOBILE */
+    /* TABLET (<=1024): un singur column, fără sticky */
+@media (max-width: 1024px) {
+  .main-container{
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 120px 1rem 2rem;
+  }
+  .sidebar{
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+/* MOBILE (<=768): sidebar SUS, content JOS */
+@media (max-width: 768px) {
+  .main-container{
+    padding: 92px 0.9rem 1.4rem !important;
+    gap: 1rem !important;
+  }
+
+  .sidebar{ order: 1 !important; }
+.content{ order: 2 !important; }
+}
+
+        
+        @media (max-width: 768px) {
+            .main-container { padding: 100px 1rem 2rem; }
+            .content { padding: 2rem; }
+            .lesson-title { font-size: 1.6rem; }
+        }
+        /* =========================
+   MOBILE OPTIMIZATION PATCH
+   ========================= */
+
+/* reduce blur/particles pe mobil (performanta) */
+@media (max-width: 768px){
+  body::before { animation: none !important; opacity: 0.35; }
+  .header, .sidebar, .content { backdrop-filter: none !important; }
+}
+
+/* container mai compact pe mobil */
+@media (max-width: 768px){
+  .main-container{
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 92px 0.9rem 1.4rem !important;
+  }
+
+  /* header mai mic */
+  .header{ padding: 0.75rem 0 !important; }
+  .nav{
+    padding: 0 1rem !important;
+    min-height: 56px !important;
+  }
+  .nav-logo{ font-size: 1.05rem !important; gap: 0.6rem !important; }
+  .nav-actions{ gap: 0.6rem !important; }
+
+  /* butoane header mai mici */
+  .nav-btn{
+    padding: 0.55rem 0.9rem !important;
+    border-radius: 999px !important;
+    font-size: 0.9rem !important;
+  }
+  .nav-btn i{ font-size: 0.95rem !important; }
+}
+
+/* Sidebar: devine "accordion / chips list" pe mobil */
+@media (max-width: 768px){
+  .sidebar{
+    order: 2;
+    padding: 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .module-title{
+    font-size: 1.05rem !important;
+    margin-bottom: 0.9rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+
+  .module-category{ margin-bottom: 1.25rem !important; }
+
+  .submodule{
+    padding: 0.75rem 0.85rem !important;
+    border-radius: 14px !important;
+    font-size: 0.95rem !important;
+    gap: 0.75rem !important;
+  }
+  .submodule:hover, .submodule.active{
+    transform: none !important; /* fara "shift" lateral pe mobil */
+  }
+}
+
+/* Content: text mai mic + mai aerisit */
+@media (max-width: 768px){
+  .content{
+    order: 1;
+    padding: 1.25rem !important;
+    border-radius: 18px !important;
+    min-height: auto !important;
+  }
+
+  .lesson-header{
+    gap: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .lesson-icon{ font-size: 2rem !important; }
+  .lesson-title{
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* video responsive corect (16:9) */
+  .lesson-video{
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .lesson-text{
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+  .lesson-text h3{
+    font-size: 1.1rem !important;
+    margin: 1.25rem 0 0.75rem !important;
+  }
+  .lesson-text p{
+    margin-bottom: 1rem !important;
+  }
+
+  /* listele sa nu fie prea "late" */
+  .lesson-text ul{
+    padding-left: 1.35rem !important;
+    margin-bottom: 1.1rem !important;
+  }
+}
+
+/* Tableta mica / phablet (optional) */
+@media (max-width: 1024px){
+  .sidebar{ position: static !important; top: auto !important; }
+}
+/* module-title devine buton */
+.module-title{
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 0;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+.module-title .chev{
+  opacity: 0.85;
+  transition: transform .2s ease;
+}
+
+/* by default (desktop) lasam totul deschis */
+.module-lessons{ display: block; }
+
+/* MOBILE: inchis/deschis */
+@media (max-width: 768px){
+  .module-category .module-lessons{
+    display: none;
+    margin-top: 0.6rem;
+  }
+
+  .module-category.is-open .module-lessons{
+    display: block;
+  }
+
+  .module-category.is-open .module-title .chev{
+    transform: rotate(180deg);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-chart-line"></i> Școala de Investiții
+            </a>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="nav-btn">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="index.html" class="nav-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- SIDEBAR - MODULE -->
+        <aside class="sidebar">
+            <div class="module-category is-open">
+                <button class="module-title" type="button">
+                  📚 Modul 1: Educație Financiară
+                  <span class="chev">▾</span>
+                </button>
+              
+                <div class="module-lessons" data-module="m2">
+                  <a href="#" class="submodule active" data-lesson="1-1">
+                    <i class="fas fa-coins submodule-icon"></i>
+                    1.1 Ce sunt banii?
+                  </a>
+                  <a href="#" class="submodule" data-lesson="1-2">
+                    <i class="fas fa-chart-pie submodule-icon"></i>
+                    1.2 Buget personal
+                  </a>
+                  <a href="#" class="submodule" data-lesson="1-3">
+                    <i class="fas fa-piggy-bank submodule-icon"></i>
+                    1.3 Economisire vs Investire
+                  </a>
+                </div>
+              </div>
+              
+              <div class="module-category">
+                <button class="module-title" type="button">
+                  🧠 Modul 2: Psihologia Investitorului
+                  <span class="chev">▾</span>
+                </button>
+              
+                <div class="module-lessons">
+                  <a href="#" class="submodule" data-lesson="2-1">
+                    <i class="fas fa-brain submodule-icon"></i> 2.1 Bias-urile cognitive
+                  </a>
+                  <a href="#" class="submodule" data-lesson="2-2">
+                    <i class="fas fa-heart-broken submodule-icon"></i> 2.2 FOMO & Panic Selling
+                  </a>
+                </div>
+              </div>
+              <div class="module-category">
+                <button class="module-title" type="button">
+                  📚 Modul 3: Educație Financiară
+                  <span class="chev">▾</span>
+                </button>
+              
+                <div class="module-lessons">
+                  <a href="#" class="submodule active" data-lesson="3-1">
+                    <i class="fas fa-coins submodule-icon"></i>
+                    1.1 Ce sunt banii?
+                  </a>
+                  <a href="#" class="submodule" data-lesson="3-2">
+                    <i class="fas fa-chart-pie submodule-icon"></i>
+                    1.2 Buget personal
+                  </a>
+                  <a href="#" class="submodule" data-lesson="1-3">
+                    <i class="fas fa-piggy-bank submodule-icon"></i>
+                    1.3 Economisire vs Investire
+                  </a>
+                </div>
+              </div>
+
+              <div class="module-category">
+                <button class="module-title" type="button">
+                  📚 Modul 4: Educație Financiară
+                  <span class="chev">▾</span>
+                </button>
+              
+                <div class="module-lessons">
+                  <a href="#" class="submodule active" data-lesson="4-1">
+                    <i class="fas fa-coins submodule-icon"></i>
+                    1.1 Ce sunt banii?
+                  </a>
+                  <a href="#" class="submodule" data-lesson="4-2">
+                    <i class="fas fa-chart-pie submodule-icon"></i>
+                    1.2 Buget personal
+                  </a>
+                  <a href="#" class="submodule" data-lesson="4-3">
+                    <i class="fas fa-piggy-bank submodule-icon"></i>
+                    1.3 Economisire vs Investire
+                  </a>
+                </div>
+              </div>
+        </aside>
+
+        <!-- CONTENT DREAPTA -->
+        <main class="content">
+            <div class="lesson-header">
+                <div class="lesson-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h1 class="lesson-title" id="lessonTitle">1.1 Ce sunt banii?</h1>
+            </div>
+
+            <video
+  class="lesson-video"
+  id="lessonVideo"
+  autoplay
+  playsinline
+  controls
+>
+  <source src="curs1.mp4" type="video/mp4">
+</video>
+
+          
+
+            <div class="lesson-text" id="lessonText">
+                <h3>🎯 Obiectivele lecției:</h3>
+                <p>În această lecție vei înțelege:</p>
+                <ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+                    <li>Originea banilor și evoluția lor</li>
+                    <li>Diferența dintre bani, monedă și activ</li>
+                    <li>Rolul băncilor centrale</li>
+                    <li>Ce înseamnă inflația cu adevărat</li>
+                </ul>
+
+                <h3>📊 Exemplu practic:</h3>
+                <p>Imaginează-ți că ai 10.000 RON în 2020. Cu acei bani puteai cumpăra:</p>
+                <ul style="color: rgba(255,255,255,0.9); padding-left: 2rem;">
+                    <li>🏠 25% dintr-un apartament de 2 camere</li>
+                    <li>🚗 O mașină Dacia nouă</li>
+                    <li>📱 100 iPhone-uri</li>
+                </ul>
+                <p>În 2026, aceiași 10.000 RON valorează doar 60% din puterea de cumpărare!</p>
+            </div>
+        </main>
+    </div>
+
+   <script>
+function enableSoundOnFirstTouch(){
+  const video = document.getElementById('lessonVideo');
+
+  function unmute(){
+    video.muted = false;
+    video.play().catch(()=>{});
+    document.removeEventListener('touchstart', unmute);
+    document.removeEventListener('click', unmute);
+  }
+
+  document.addEventListener('touchstart', unmute, { once:true });
+  document.addEventListener('click', unmute, { once:true });
+}
+
+window.addEventListener('load', enableSoundOnFirstTouch);
+</script>
+
+   
+    <script>
+        const DEFAULT_LESSON = '1-1';
+        const LS_KEY = 'currentLessonId';
+      
+        // ===== Auth check =====
+        window.addEventListener('load', function() {
+          const savedSession = localStorage.getItem('authSession');
+          const savedTimeout = localStorage.getItem('sessionTimeout');
+          if (!savedSession || !savedTimeout || Date.now() > parseInt(savedTimeout)) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+            return;
+          }
+          bootLesson(); // pornește după auth ok
+        });
+      
+        // ===== Lesson data =====
+        function getLessons(){
+          return {
+            '1-1': {
+              title: '1.1 Ce sunt banii?',
+              icon: 'fas fa-coins',
+              video: 'curs1.mp4',
+              text: `
+                <h3>🎯 Obiectivele lecției:</h3>
+                <p>În această lecție vei înțelege:</p>
+                <ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+                  <li>Originea banilor și evoluția lor</li>
+                  <li>Diferența dintre bani, monedă și activ</li>
+                  <li>Rolul băncilor centrale</li>
+                  <li>Ce înseamnă inflația cu adevărat</li>
+                </ul>
+              `
+            },
+      
+            '1-2': {
+              title: '1.2 Buget personal',
+              icon: 'fas fa-chart-pie',
+              video: 'curs2.mp4',
+              text: `
+                <h3>🔥 Bugetul tău = Harta către libertate financiară</h3>
+                <p>Aici vei învăța regula 50/30/20...</p>
+              `
+            },
+      
+            '2-1': {
+              title: '2.1 Bias-urile cognitive',
+              icon: 'fas fa-brain',
+              video: 'curs3.mp4',
+              text: `
+                <h3>🧠 Bias-urile cognitive</h3>
+                <p>Aici explici cum deciziile sunt influențate de emoții și pattern-uri.</p>
+              `
+            },
+      
+            '2-2': {
+              title: '2.2 FOMO & Panic Selling',
+              icon: 'fas fa-heart-broken',
+              video: 'curs4.mp4',
+              text: `
+                <h3>📉 FOMO & Panic Selling</h3>
+                <p>Ce sunt și cum le controlezi.</p>
+              `
+            }
+          };
+        }
+      
+        // ===== UI helpers =====
+        function setActiveLesson(lessonId){
+          document.querySelectorAll('.submodule').forEach(l => l.classList.remove('active'));
+          const link = document.querySelector(`.submodule[data-lesson="${lessonId}"]`);
+          if (link) link.classList.add('active');
+        }
+      
+        function openModuleOfLesson(lessonId){
+          const link = document.querySelector(`.submodule[data-lesson="${lessonId}"]`);
+          if (!link) return;
+      
+          const cat = link.closest('.module-category');
+          if (!cat) return;
+      
+          if (window.matchMedia('(max-width: 768px)').matches){
+            document.querySelectorAll('.module-category').forEach(c => c.classList.remove('is-open'));
+            cat.classList.add('is-open');
+          }
+        }
+      
+        // IMPORTANT: la <video> cu <source>, trebuie să schimbi SOURCE și apoi .load()
+        function setVideoSrc(videoUrl){
+          const videoEl = document.getElementById('lessonVideo');
+          const sourceEl = videoEl.querySelector('source');
+          sourceEl.src = videoUrl;
+          videoEl.load();
+        }
+      
+        // ===== Load lesson =====
+        function loadLesson(id){
+          const lessons = getLessons();
+          const lesson = lessons[id] || lessons[DEFAULT_LESSON];
+      
+          document.getElementById('lessonTitle').textContent = lesson.title;
+          document.querySelector('.lesson-icon i').className = lesson.icon;
+          setVideoSrc(lesson.video);
+          document.getElementById('lessonText').innerHTML = lesson.text;
+        }
+      
+        // ===== Boot =====
+        function bootLesson(){
+          const saved = localStorage.getItem(LS_KEY);
+          const lessonId = saved || DEFAULT_LESSON;
+      
+          setActiveLesson(lessonId);
+          loadLesson(lessonId);
+          openModuleOfLesson(lessonId);
+        }
+      
+        // ===== Lesson clicks =====
+        document.querySelectorAll('.submodule').forEach(link => {
+          link.addEventListener('click', function(e){
+            e.preventDefault();
+            const lessonId = this.getAttribute('data-lesson');
+      
+            localStorage.setItem(LS_KEY, lessonId);
+      
+            setActiveLesson(lessonId);
+            loadLesson(lessonId);
+            openModuleOfLesson(lessonId);
+      
+            if (window.matchMedia('(max-width: 768px)').matches){
+              document.querySelector('.content')?.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+          });
+        });
+      
+        // ===== Accordion clicks (mobile) =====
+        (function(){
+          const categories = document.querySelectorAll('.module-category');
+          const buttons = document.querySelectorAll('.module-category .module-title');
+      
+          function closeAll(except=null){
+            categories.forEach(c => { if (c !== except) c.classList.remove('is-open'); });
+          }
+      
+          buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              if (!window.matchMedia('(max-width: 768px)').matches) return;
+              const cat = btn.closest('.module-category');
+              const willOpen = !cat.classList.contains('is-open');
+              closeAll(cat);
+              if (willOpen) cat.classList.add('is-open');
+              else cat.classList.remove('is-open');
+            });
+          });
+      
+          window.addEventListener('resize', () => {
+            const active = document.querySelector('.submodule.active');
+            const activeId = active?.getAttribute('data-lesson') || (localStorage.getItem(LS_KEY) || DEFAULT_LESSON);
+            if (window.matchMedia('(max-width: 768px)').matches){
+              closeAll();
+              openModuleOfLesson(activeId);
+            } else {
+              categories.forEach(c => c.classList.remove('is-open'));
+            }
+          });
+        })();
+      </script>
+      <script>
+        function enableSoundOnFirstTouch(){
+          const video = document.getElementById('lessonVideo');
+        
+          function unmute(){
+            video.muted = false;
+            video.play().catch(()=>{});
+            document.removeEventListener('touchstart', unmute);
+            document.removeEventListener('click', unmute);
+          }
+        
+          document.addEventListener('touchstart', unmute, { once:true });
+          document.addEventListener('click', unmute, { once:true });
+        }
+        
+        window.addEventListener('load', enableSoundOnFirstTouch);
+        window.addEventListener("load", () => {
+
+const video = document.getElementById("lessonVideo");
+
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if(isMobile){
+  // mobil → trebuie muted
+  video.muted = true;
+  video.play().catch(()=>{});
+} else {
+  // PC → încearcă cu sunet
+  video.muted = false;
+
+  const playPromise = video.play();
+
+  if(playPromise !== undefined){
+    playPromise.catch(()=>{
+      // dacă PC blochează → fallback muted
+      video.muted = true;
+      video.play().catch(()=>{});
+    });
+  }
+}
+
+});
+
+        </script>
+        
+</body>
+</html>

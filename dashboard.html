@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Școala de Investiții</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #0a0f1e; 
+            --secondary: linear-gradient(135deg, #ffd700, #ffed4e); 
+            --accent: #00d4ff; 
+            --neon: #00ff88; 
+            --glass: rgba(255,255,255,0.1); 
+            --bg: linear-gradient(135deg, #0a0f1e 0%, #1a1f2e 50%, #0f141e 100%);
+            --text: #e2e8f0;
+            --shadow: 0 35px 60px -12px rgba(0,0,0,0.6);
+            --success: rgba(16,185,129,0.2);
+            --danger: rgba(239,68,68,0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *::selection { background: var(--accent); color: white; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* PARTICULE */
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(0,255,136,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,237,78,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: particles 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes particles {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* HEADER DASHBOARD */
+        .dashboard-header {
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(10,15,30,0.97); 
+            backdrop-filter: blur(25px); 
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            z-index: 1000; padding: 1rem 0;
+        }
+        .dashboard-nav { 
+            max-width: 1200px; margin: 0 auto; 
+            padding: 0 2rem; display: flex; 
+            align-items: center; justify-content: space-between;
+            min-height: 70px;
+        }
+        .dashboard-logo { 
+            display: flex; align-items: center; gap: 1rem;
+            text-decoration: none; font-weight: 700; font-size: 1.3rem;
+            background: var(--secondary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .dashboard-actions {
+            display: flex; gap: 1rem; align-items: center;
+        }
+        .dashboard-btn {
+            padding: 0.8rem 1.8rem; border-radius: 50px; 
+            background: linear-gradient(45deg, var(--accent), var(--neon));
+            color: white; text-decoration: none; font-weight: 600;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .dashboard-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,212,255,0.4);
+        }
+        .logout-btn {
+            background: transparent; color: #ff6b6b !important;
+            border: 2px solid rgba(255,107,107,0.3);
+        }
+
+        /* MAIN CONTENT */
+        .dashboard-main {
+            padding: 120px 2rem 4rem; max-width: 1200px; margin: 0 auto;
+        }
+
+        /* PROFILE CARD CENTRAL */
+        .profile-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding: 0 20px;
+}
+
+
+.profile-card{
+  width: 100%;
+  max-width: 780px;     /* asta îl centrează vizual */
+  margin: 0 auto;       /* CENTRARE REALĂ */
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(35px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 22px;
+  padding: 2.2rem 2.2rem;
+
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+
+.profile-card::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--secondary);
+}
+
+.profile-left{
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.profile-avatar{
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;            /* dreptunghi cu colțuri rotunjite */
+  background: linear-gradient(135deg, var(--accent), var(--neon));
+  border: 4px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,212,255,0.25);
+}
+
+.profile-info{
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+
+.profile-name{
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, white, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile-email{
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  font-weight: 400;
+}
+
+.profile-right{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.course-btn{
+  padding: 0.9rem 1.4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.course-btn{
+  padding: 1.1rem 4rem;   /* mai lat + mai inalt */
+  font-size: 1.1rem;         /* text mai mare */
+  border-radius: 18px;
+}
+
+.course-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,212,255,0.25);
+  background: rgba(255,255,255,0.12);
+}
+
+/* STATUS badge: îl lăsăm dar îl aliniem la dreapta */
+#statusBadge{
+  justify-content: center;
+}
+
+/* MOBILE */
+@media (max-width: 768px){
+  .profile-card{
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+    text-align: center;
+    padding: 1.8rem 1.4rem;
+  }
+
+  .profile-left{
+    justify-content: center;
+  }
+
+  .profile-right{
+    align-items: center;
+  }
+
+  .profile-avatar{
+    width: 110px;
+    height: 110px;
+    border-radius: 18px;
+    font-size: 2.8rem;
+  }
+
+  .profile-name{
+    font-size: 1.9rem;
+  }
+}
+
+
+        /* STATUS BADGE MARE */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 1rem;
+            padding: 1.2rem 2.5rem; border-radius: 50px; font-size: 1.3rem;
+            font-weight: 700; backdrop-filter: blur(25px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .status-badge.purchased {
+            background: var(--success); border-color: var(--neon);
+            color: white; box-shadow: 0 10px 30px rgba(0,255,136,0.3);
+        }
+        .status-badge.pending {
+            background: var(--danger); border-color: #ef4444;
+            color: white; box-shadow: 0 10px 30px rgba(239,68,68,0.3);
+        }
+        .status-icon { font-size: 3rem; }
+
+        /* DASHBOARD CARDS */
+        .dashboard-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem; margin-top: 4rem;
+        }
+        .dashboard-card {
+            background: rgba(255,255,255,0.08); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px; padding: 2.5rem;
+            text-align: center; transition: all 0.4s ease;
+            height: 100%;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .card-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        .card-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+        .card-access { 
+            padding: 0.8rem 1.5rem; border-radius: 20px; font-size: 1rem;
+            font-weight: 600; border: 2px solid var(--neon);
+        }
+        .access-yes { background: rgba(0,255,136,0.15); color: var(--neon); }
+        .access-no { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .dashboard-main { padding: 100px 1rem 2rem; }
+            .profile-card { padding: 2.5rem 2rem; margin-bottom: 3rem; }
+            .profile-avatar { width: 110px; height: 110px; font-size: 3rem; }
+            .profile-name { font-size: 2rem; }
+            .status-badge { padding: 1rem 2rem; font-size: 1.1rem; }
+            .dashboard-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+        /* MODAL - NO ACCESS */
+.modal{
+  display:none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 3000;
+  padding: 18px;
+}
+
+.modal-box{
+  max-width: 520px;
+  width: 100%;
+  margin: 12vh auto;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 1.6rem 1.6rem;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+}
+
+.modal-box h2{
+  margin-bottom: 0.7rem;
+  color: white;
+  font-size: 1.6rem;
+}
+
+.modal-box p{
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.modal-actions{
+  display:flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.modal-btn{
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.course-btn{
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+}
+.course-btn:focus{ outline: none; }
+.modal-btn.primary{
+  background: linear-gradient(45deg, var(--accent), var(--neon));
+  color: white;
+}
+
+.modal-btn.secondary{
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+@media (max-width: 768px){
+  .modal-box{ margin: 16vh auto; padding: 1.3rem; }
+  .modal-actions{ justify-content: center; }
+  .modal-btn{ width: 100%; justify-content: center; }
+}
+
+    </style>
+</head>
+<body>
+    <!-- DASHBOARD HEADER -->
+    <header class="dashboard-header">
+        <nav class="dashboard-nav">
+            <a href="#" class="dashboard-logo" onclick="goHome()">
+                <i class="fas fa-chart-line"></i> Școala de Investiții
+            </a>
+            <div class="dashboard-actions">
+                <a href="#" class="dashboard-btn" onclick="goCourse()">
+                    <i class="fas fa-book"></i> Cursuri
+                </a>
+                <a href="#" class="dashboard-btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- PROFILE CENTRAL -->
+        <div class="profile-card" id="profileCard">
+    
+            <div class="profile-left">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+        
+                <div class="profile-info">
+                    <h1 class="profile-name" id="userName">Ion Popescu</h1>
+                    <p class="profile-email" id="userEmail">ion.popescu@email.com</p>
+                </div>
+            </div>
+        
+            <div></div> <!-- spacer -->
+        
+            <div class="profile-right">
+                <button type="button" class="course-btn" onclick="goCourse()">
+                    <i class="fas fa-play-circle"></i> Intră în curs
+                  </button>
+        
+                <div class="status-badge purchased" id="statusBadge">
+                    <i class="fas fa-check-circle status-icon"></i>
+                    <span>✅ Acces achiziționat</span>
+                </div>
+            </div>
+        
+        </div>
+        
+
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon" style="color: #00d4ff;">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="card-title">Module Educaționale</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                    4 module complete: Educație Financiară, Psihologie, Istorie Bani, Investiții Practice
+                </p>
+                <span class="card-access access-yes">Acces Complet</span>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon" style="color: #00ff88;">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="card-title">Mentorat Live</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                    1 apel lunar individual cu Sofian Covan + seminare săptămânale
+                </p>
+                <span class="card-access access-yes">Disponibil</span>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon" style="color: #ffd700;">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="card-title">Tool-uri Analiză</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                    Chart-uri live, indicatori tehnici, simulări portofoliu
+                </p>
+                <span class="card-access access-yes">Activ</span>
+            </div>
+
+        
+        </div>
+    </main>
+
+    <script>
+        // Preia datele userului din localStorage
+        function loadUserData() {
+  const savedEmail = localStorage.getItem('lastEmail') || '';
+
+  if (!savedEmail) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  const profileRaw = localStorage.getItem('profile_' + btoa(savedEmail));
+  let fullName = 'Utilizator';
+
+  if (profileRaw) {
+    try {
+      const profile = JSON.parse(profileRaw);
+      const first = (profile.firstName || '').trim();
+      const last  = (profile.lastName || '').trim();
+      fullName = (first + ' ' + last).trim() || fullName;
+    } catch (e) {}
+  }
+
+  document.getElementById('userName').textContent = fullName;
+  document.getElementById('userEmail').textContent = savedEmail;
+
+  // status achizitie (cum ai deja)
+  const hasPurchased = hasAccessFromText(savedEmail, PURCHASED_EMAILS_TEXT);
+
+  const statusBadge = document.getElementById('statusBadge');
+
+  if (hasPurchased) {
+    statusBadge.className = 'status-badge purchased';
+    statusBadge.innerHTML = '<i class="fas fa-check-circle status-icon"></i><span>✅Acces achiziționat</span>';
+  } else {
+    statusBadge.className = 'status-badge pending';
+    statusBadge.innerHTML = '<i class="fas fa-clock status-icon"></i><span>✅Acces neachiziționat</span>';
+  }
+}
+
+
+        // Navigare
+        function goHome() {
+            window.location.href = 'index.html'; // Schimba cu numele fisierului principal
+        }
+        function goCourse() {
+  if (userHasAccess()) {
+    window.location.href = 'curs.html';
+  } else {
+    openNoAccess();
+  }
+}
+function openNoAccess(){
+  const m = document.getElementById('noAccessModal');
+  if(!m){
+    alert("🔒 Nu ai acces la curs. Achiziționează accesul.");
+    return;
+  }
+  m.style.display = 'block';
+  m.setAttribute('aria-hidden', 'false');
+}
+
+function goCheckout(){
+  // dacă ai o pagină dedicată de plată:
+  // window.location.href = 'checkout.html';
+
+  // dacă vrei să te întorci la pagina de vânzare:
+  window.location.href = 'index.html#product';
+}
+
+// închide dacă dai click pe fundal
+window.addEventListener('click', function(e){
+  const m = document.getElementById('noAccessModal');
+  if (e.target === m) closeNoAccess();
+});
+
+
+        function showCourses() {
+            alert('Cursuri în curs de dezvoltare...');
+        }
+
+        function logout() {
+  localStorage.removeItem('authSession');
+  localStorage.removeItem('sessionTimeout');
+  localStorage.removeItem('lastEmail');
+  window.location.href = 'index.html';
+}
+
+        // Hamburger menu pentru mobile (optional)
+        function initMobileMenu() {
+            const toggle = document.querySelector('.nav-toggle');
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+        }
+
+        window.addEventListener('load', function() {
+  const savedSession = localStorage.getItem('authSession');
+  const savedTimeout = localStorage.getItem('sessionTimeout');
+
+  // daca nu exista sesiune sau a expirat -> inapoi la index
+  if (!savedSession || !savedTimeout || Date.now() > parseInt(savedTimeout)) {
+    localStorage.removeItem('authSession');
+    localStorage.removeItem('sessionTimeout');
+    window.location.href = 'index.html';
+    return;
+  }
+
+  loadUserData();
+  initMobileMenu();
+});
+
+// Emailuri cu acces (poți lipi aici dintr-un text)
+const PURCHASED_EMAILS_TEXT = `
+covansofian@gmail.com
+`;
+
+function hasAccessFromText(email, text) {
+  const target = (email || '').trim().toLowerCase();
+  if (!target) return false;
+
+  const list = (text || '')
+    .split(/\r?\n/)
+    .map(l => l.trim().toLowerCase())
+    .filter(Boolean);
+
+  return list.includes(target);
+}
+
+function userHasAccess(){
+  const email = localStorage.getItem('lastEmail') || '';
+  return hasAccessFromText(email, PURCHASED_EMAILS_TEXT);
+}
+
+function goCourse() {
+  if (userHasAccess()) {
+    window.location.href = 'curs.html';
+  } else {
+    openNoAccess();
+  }
+}
+
+function openNoAccess(){
+  const m = document.getElementById('noAccessModal');
+  if(!m){
+    alert("🔒 Nu ai acces la curs. Achiziționează accesul.");
+    return;
+  }
+  m.style.display = 'block';
+  m.setAttribute('aria-hidden', 'false');
+}
+
+function closeNoAccess(){
+  const m = document.getElementById('noAccessModal');
+  if(!m) return;
+  m.style.display = 'none';
+  m.setAttribute('aria-hidden', 'true');
+}
+const icon = statusBadge.querySelector("i");
+const text = document.getElementById("statusText");
+
+if(hasPurchased){
+  statusBadge.className = "status-badge purchased";
+  icon.className = "fas fa-check-circle status-icon";
+  text.textContent = "Acces achiziționat";
+}else{
+  statusBadge.className = "status-badge pending";
+  icon.className = "fas fa-clock status-icon";
+  text.textContent = "Acces în așteptare";
+}
+    </script>
+    <!-- NO ACCESS MODAL -->
+<div id="noAccessModal" class="modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="noAccessTitle">
+      <h2 id="noAccessTitle">🔒 Nu ai acces la curs</h2>
+      <p id="noAccessText">
+        Contul tău nu are încă acces activ. Pentru a intra în platformă, achiziționează accesul.
+      </p>
+  
+      <div class="modal-actions">
+        <button class="modal-btn secondary" type="button" onclick="closeNoAccess()">Închide</button>
+        <button class="modal-btn primary" type="button" onclick="goCheckout()">
+          <i class="fas fa-crown"></i> Achiziționează accesul
+        </button>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
