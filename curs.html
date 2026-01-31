@@ -125,10 +125,17 @@
         }
         .lesson-icon { font-size: 2.5rem; color: var(--neon); }
         .lesson-title { font-size: 2rem; font-weight: 700; }
-        .lesson-video { width: 100%; height: 350px; border-radius: 20px; margin-bottom: 2rem; }
+        .lesson-video { width: 100%; height: 350px; border-radius: 20px; margin-bottom: 0 !important; }
         .lesson-text { line-height: 1.8; font-size: 1.1rem; }
         .lesson-text h3 { color: white; font-size: 1.4rem; margin: 2rem 0 1rem; }
         .lesson-text p { margin-bottom: 1.5rem; }
+        .video-wrapper{
+  margin-bottom: 8px;  /* sau 8px dacă vrei foarte tight */
+}
+.video-wrapper{ margin-bottom: 12px !important; }
+.lesson-video{ margin-bottom: 0 !important; }
+.lesson-text{ margin-top: 0 !important; }
+.lesson-text h3:first-child{ margin-top: 0.6rem !important; }
 
         /* MOBILE */
     /* TABLET (<=1024): un singur column, fără sticky */
@@ -272,6 +279,20 @@
     margin-bottom: 1.1rem !important;
   }
 }
+.video-wrapper{
+  width: 100%;
+  max-width: 900px;   /* cat vrei tu maxim */
+  margin: 0 auto;
+}
+
+.video-wrapper video{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;   /* format standard video */
+  object-fit: cover;      /* sau contain daca vrei fara crop */
+  border-radius: 16px;
+}
+
 
 /* Tableta mica / phablet (optional) */
 @media (max-width: 1024px){
@@ -322,6 +343,7 @@
   }
 }
 
+
     </style>
 </head>
 <body>
@@ -354,15 +376,15 @@
                 <div class="module-lessons" data-module="m2">
                   <a href="#" class="submodule active" data-lesson="1-1">
                     <i class="fas fa-coins submodule-icon"></i>
-                    1.1 Ce sunt banii?
+                    1.1 Atenție! Începe de aici – Citește înainte de a continua
                   </a>
                   <a href="#" class="submodule" data-lesson="1-2">
                     <i class="fas fa-chart-pie submodule-icon"></i>
-                    1.2 Buget personal
+                    1.2 De ce este importantă educația financiară?
                   </a>
                   <a href="#" class="submodule" data-lesson="1-3">
                     <i class="fas fa-piggy-bank submodule-icon"></i>
-                    1.3 Economisire vs Investire
+                    1.3 Cum funcționează banii
                   </a>
                 </div>
               </div>
@@ -435,6 +457,7 @@
                 </div>
                 <h1 class="lesson-title" id="lessonTitle">1.1 Ce sunt banii?</h1>
             </div>
+            <div class="video-wrapper">
 
             <video
   class="lesson-video"
@@ -445,6 +468,7 @@
 >
   <source src="curs1.mp4" type="video/mp4">
 </video>
+</div>
 
           
 
@@ -509,35 +533,214 @@ window.addEventListener('load', enableSoundOnFirstTouch);
         function getLessons(){
           return {
             '1-1': {
-              title: '1.1 Ce sunt banii?',
+              title: '1.1 Atenție! Începe de aici – Citește înainte de a continua',
               icon: 'fas fa-coins',
-              video: 'curs1.mp4',
+            
               text: `
-                <h3>🎯 Obiectivele lecției:</h3>
-                <p>În această lecție vei înțelege:</p>
+                <h3>Bun venit în Școala de Investiții: Începe-ți drumul ca investitor</h3>
+              <p>Sunt Sofian Covan și îți mulțumesc că te-ai înscris în Școala de Investiții.</p>
+                <p>Sunt aici să te formez și să te antrenez pentru a fi educat financiar și pentru a ști să investești corect, pe termen lung 📈.</p>
+                <p>⚠️ Atenționare importantă înainte de a începe cursul:<br>Nu te grăbi și nu sări direct la investiții. Succesul în investiții nu vine din grabă, ci din bază solidă, disciplină și răbdare. Acest program este construit progresiv, iar fiecare modul este esențial.</p>
+                <p>Te rog să parcurgi toate modulele în ordine, pe luni, fără excepții:</p>
                 <ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
-                  <li>Originea banilor și evoluția lor</li>
-                  <li>Diferența dintre bani, monedă și activ</li>
-                  <li>Rolul băncilor centrale</li>
-                  <li>Ce înseamnă inflația cu adevărat</li>
-                </ul>
+                  
+                  <li>Luna 1 – Educație financiară<br>Fundamentele banilor și ale gestionării corecte 💰</li>
+                 <li>Luna 2 – Psihologia investitorului<br>Mentalitate, autocontrol și decizii raționale 🧠</li>
+                 <li>Luna 3 – Istoria banilor și a investițiilor<br>Lecțiile trecutului și evoluția piețelor</li>
+                 <li>Luna 4 – Investițiile, pas cu pas<br>Aplicare practică, structurată și responsabilă 📊</li>
+                 <h3>❗ Dacă sari etapele, îți sabotezi singur progresul.</h3>
+                 <p>Ai răbdare, respectă procesul și tratează această școală ca pe un antrenament serios.
+                 <br>Educația financiară se construiește. Investițiile vin doar după.</p>
+              
               `
+              
             },
       
             '1-2': {
-              title: '1.2 Buget personal',
+              title: '1.2 De ce este importantă educația financiară?',
               icon: 'fas fa-chart-pie',
-              video: 'curs2.mp4',
+             
               text: `
-                <h3>🔥 Bugetul tău = Harta către libertate financiară</h3>
-                <p>Aici vei învăța regula 50/30/20...</p>
+              <h3>De ce este importantă educația financiară?</h3>
+
+<p>Educația financiară nu e un „lux” și nici un moft. E una dintre puținele abilități care îți influențează direct viața de zi cu zi: stresul pe care îl simți, alegerile pe care le faci, libertatea pe care o ai, cât de repede te ridici după un eșec și cât de ușor îți construiești viitorul. Iar partea cea mai dură e asta: chiar dacă nu te interesează banii, banii te vor interesa pe tine. Pentru că ei sunt în spatele fiecărei decizii: chirie, mâncare, sănătate, timp liber, educație, oportunități.</p>
+
+<p>Educația financiară înseamnă să înțelegi cum funcționează banii și cum funcționezi tu în raport cu ei. Nu înseamnă să devii obsedat de bani. Înseamnă să nu mai fii la mâna întâmplării. Să nu mai trăiești doar din „văd eu”, „merge și așa”, „lasă că se rezolvă”. Înseamnă să știi de ce rămâi fără bani la finalul lunii, de ce simți că muncești mult și totuși nu se vede, de ce uneori ai impresia că „toți au noroc”, numai tu nu.</p>
+
+<h3>Da, face diferența între bogat și sărac?</h3>
+
+<p>Răspunsul cinstit: <strong>de cele mai multe ori, da</strong> — dar nu în felul simplist în care sună pe TikTok. Diferența dintre cine ajunge prosper și cine rămâne blocat nu e doar salariul. Sunt oameni cu salarii mari care trăiesc de la un salariu la altul. Și sunt oameni cu salarii medii care, în câțiva ani, își construiesc stabilitate, economii și investiții.</p>
+
+<p>Diferența reală este <strong>comportamentul financiar</strong>. Iar comportamentul financiar vine din educație, din obișnuințe și din modul în care gândești despre bani. Educația financiară nu îți garantează că vei fi bogat. Dar îți crește enorm șansele să nu rămâi sărac. Și mai important: îți crește șansele să nu fii vulnerabil.</p>
+
+<p>Un om fără educație financiară poate câștiga bine și totuși să fie „sărac” în realitate, pentru că:</p>
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>nu are un plan, doar cheltuie după impuls</li>
+  <li>își crește stilul de viață odată cu venitul (și tot rămâne fără bani)</li>
+  <li>trăiește pe credit și plătește dobânzi mari</li>
+  <li>nu are fond de urgență</li>
+  <li>nu înțelege riscul și cade ușor în capcane sau „scheme rapide”</li>
+</ul>
+
+<p>În schimb, un om cu educație financiară, chiar și cu venit mediu, face lucruri „banale”, dar puternice:</p>
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>știe exact pe ce se duc banii lui</li>
+  <li>are un fond de siguranță</li>
+  <li>își planifică cheltuielile mari</li>
+  <li>evită datoriile toxice</li>
+  <li>înțelege diferența dintre a impresiona și a construi</li>
+</ul>
+
+<h3>„Bogăția” nu începe cu investițiile. Începe cu ordine.</h3>
+
+<p>Mulți cred că bogăția vine dintr-o singură mișcare: o investiție genială, o monedă care „explodează”, o afacere care rupe piața. Realitatea e mult mai puțin spectaculoasă, dar mult mai sigură: bogăția se construiește din <strong>ordine</strong> și din <strong>decizii repetitive</strong>.</p>
+
+<p>Educația financiară te învață să creezi ordine într-un lucru care, pentru cei mai mulți oameni, e haos: venitul, cheltuielile, datoriile, economiile, obiectivele. Când ai ordine, încep să apară rezultate. Nu peste noapte, dar constant. Când nu ai ordine, rezultatele sunt întâmplătoare: într-o lună ai bani, în alta nu. Azi ești bine, mâine te ia panica.</p>
+
+<p>De exemplu, fără educație financiară, un salariu în plus devine „în sfârșit îmi permit”, adică:</p>
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>abonamente în plus</li>
+  <li>mâncat mai des în oraș</li>
+  <li>telefon schimbat prea repede</li>
+  <li>rate noi</li>
+</ul>
+
+<p>Cu educație financiară, același salariu în plus devine „în sfârșit construiesc”, adică:</p>
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>fond de urgență completat</li>
+  <li>datorii reduse</li>
+  <li>economii automate</li>
+  <li>investiții făcute cu cap, pas cu pas</li>
+</ul>
+
+<h3>Educația financiară îți dă putere în fața realității</h3>
+
+<p>Realitatea e că viața vine cu șocuri: îți strici mașina, apare o problemă medicală, pierzi un job, crește chiria, apare o oportunitate care cere bani rapid. Fără educație financiară, orice șoc devine dramă. Cu educație financiară, devine o problemă care se gestionează.</p>
+
+<p>Diferența dintre „am o problemă” și „m-am terminat” de multe ori e un singur lucru: <strong>rezerva financiară</strong> și <strong>controlul</strong>. Iar controlul începe cu educație.</p>
+
+<h3>Educația financiară nu te face doar mai bogat. Te face mai liniștit.</h3>
+
+<p>Unul dintre cele mai subestimate beneficii ale educației financiare este liniștea mentală. Când știi ce faci cu banii tăi, anxietatea scade. Când ai plan, nu te mai sperie fiecare factură. Când ai fond de urgență, nu intri în panică la primul obstacol. Când îți înțelegi cheltuielile, începi să simți că tu conduci, nu că ești condus.</p>
+
+<p>Și asta contează enorm. Pentru că banii nu sunt doar cifre. Sunt energie, timp și libertate. Lipsa lor nu doare doar în portofel; doare în relații, în stima de sine, în decizii, în sănătate.</p>
+
+<h3>De ce mulți rămân „săraci” chiar și când câștigă mai mult?</h3>
+
+<p>Pentru că sărăcia nu e doar lipsă de bani. Este, foarte des, <strong>lipsă de sistem</strong>. Lipsă de disciplină. Lipsă de înțelegere. Un om poate câștiga 5.000, 10.000 sau 15.000 pe lună și să fie tot captiv dacă:</p>
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>are rate peste rate</li>
+  <li>nu știe cât cheltuie</li>
+  <li>nu economisește</li>
+  <li>nu investește nimic</li>
+  <li>trăiește pentru imagine, nu pentru stabilitate</li>
+</ul>
+
+<p>Asta e una dintre cele mai mari capcane moderne: crezi că venitul îți rezolvă viața. Dar venitul fără educație financiară îți poate amplifica problemele. Pentru că, dacă nu știi să gestionezi 3.000 lei, nu o să știi nici 10.000. Doar o să greșești la un nivel mai mare.</p>
+
+<h3>Concluzie: educația financiară e fundația. Restul se construiește peste.</h3>
+
+<p>Da, educația financiară poate face diferența dintre cel bogat și cel sărac. Nu pentru că te transformă magic într-un milionar, ci pentru că îți schimbă direcția. Îți schimbă obiceiurile. Îți schimbă alegerile zilnice. Iar alegerile zilnice, repetate ani la rând, creează rezultate complet diferite.</p>
+
+<p>Dacă ar fi să reții un singur lucru din lecția asta, reține atât: <strong>nu investițiile sunt primul pas. Primul pas este să înțelegi banii și să ai control asupra lor.</strong> Când ai control, începi să construiești. Când construiești, începi să te ridici. Și de acolo, în timp, apar și rezultatele.</p>
+
+<p>În lecțiile următoare, o să facem fix asta: construim baza. Pas cu pas. Fără grabă. Pentru că aici nu e despre „lovituri”. E despre a deveni un om care știe ce face cu banii lui.</p>
+
+
               `
             },
+            
       
+      '1-3': {
+        title: '1.3 Cum funcționează banii',
+        icon: 'fas fa-chart-pie',
+       
+        text: `<h3>Cum funcționează banii</h3>
+
+<p>Pentru a înțelege cu adevărat economia, investițiile și chiar deciziile financiare personale, trebuie să pornim de la o întrebare fundamentală: <em>ce sunt banii și cum funcționează ei în realitate?</em> Deși folosim banii zilnic, majoritatea oamenilor interacționează cu ei fără a le înțelege mecanismele profunde. Această lipsă de înțelegere nu este una întâmplătoare; sistemele monetare sunt complexe, abstracte și rareori explicate riguros în educația formală.</p>
+
+<p>Banii nu sunt doar bancnote, monede sau cifre într-o aplicație bancară. Ei reprezintă un <strong>sistem social, economic și instituțional</strong> creat pentru a facilita schimbul, a stoca valoare și a măsura valoarea bunurilor și serviciilor într-o economie. Pentru a înțelege cum funcționează banii, trebuie să analizăm atât <strong>funcțiile lor economice</strong>, cât și <strong>mecanismele instituționale</strong> care îi guvernează.</p>
+
+<h3>Funcțiile fundamentale ale banilor</h3>
+
+<p>Din punct de vedere academic, banii îndeplinesc trei funcții principale, recunoscute în teoria economică clasică și modernă:</p>
+
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li><strong>Mijloc de schimb</strong> – banii elimină necesitatea trocului și permit tranzacții eficiente între agenți economici.</li>
+  <li><strong>Unitate de cont</strong> – banii oferă un standard comun prin care valoarea bunurilor și serviciilor poate fi comparată.</li>
+  <li><strong>Depozit de valoare</strong> – banii permit transferul puterii de cumpărare din prezent în viitor.</li>
+</ul>
+
+<p>Aceste funcții par simple la suprafață, dar ele stau la baza întregii economii moderne. Fără ele, nu ar putea exista piețe complexe, contracte pe termen lung, investiții sau sisteme financiare sofisticate.</p>
+
+<h3>De la bani marfă la bani fiduciari</h3>
+
+<p>Istoric, banii au apărut ca <strong>bani marfă</strong>, adică bunuri cu valoare intrinsecă: aur, argint, sare, cereale. Valoarea lor provenea din utilitatea directă sau din raritatea lor. În timp, aceste forme de bani au fost înlocuite treptat de <strong>bani reprezentativi</strong> (certificate care puteau fi convertite în aur) și, ulterior, de <strong>bani fiduciari</strong>.</p>
+
+<p>Banii fiduciari sunt forma dominantă astăzi. Ei nu au valoare intrinsecă și nu sunt susținuți de aur sau alte active fizice. Valoarea lor derivă din:</p>
+
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>încrederea colectivă în emitent (statul)</li>
+  <li>acceptarea lor legală ca mijloc de plată</li>
+  <li>stabilitatea relativă a economiei</li>
+</ul>
+
+<p>Cu alte cuvinte, banii moderni funcționează pentru că societatea are încredere că vor fi acceptați mâine la fel cum sunt acceptați azi.</p>
+
+<h3>Rolul statului și al băncii centrale</h3>
+
+<p>În economiile moderne, controlul monetar este exercitat de <strong>banca centrală</strong>. Aceasta are monopolul emisiunii monetare și responsabilitatea menținerii stabilității prețurilor și a funcționării sistemului financiar.</p>
+
+<p>Băncile centrale influențează economia prin instrumente precum:</p>
+
+<ul style="color: rgba(255,255,255,0.9); padding-left: 2rem; margin-bottom: 2rem;">
+  <li>rata dobânzii de politică monetară</li>
+  <li>operațiuni de piață deschisă</li>
+  <li>rezervele minime obligatorii</li>
+  <li>programe de relaxare cantitativă</li>
+</ul>
+
+<p>Prin aceste mecanisme, banca centrală controlează <strong>costul banilor</strong> și <strong>cantitatea de bani</strong> din economie, influențând consumul, economisirea, investițiile și inflația.</p>
+
+<h3>Crearea banilor: un proces mai complex decât pare</h3>
+
+<p>Unul dintre cele mai greșit înțelese aspecte ale sistemului monetar este modul în care sunt creați banii. Contrar percepției populare, majoritatea banilor nu sunt creați prin tipărire fizică, ci prin <strong>creditare bancară</strong>.</p>
+
+<p>Băncile comerciale creează bani atunci când acordă credite. Când o bancă acordă un împrumut, ea nu transferă bani existenți, ci creează noi depozite în contul clientului. Acest proces poartă numele de <strong>creare a banilor prin sistemul rezervelor fracționare</strong>.</p>
+
+<p>Acest mecanism amplifică masa monetară și accelerează activitatea economică, dar implică și riscuri, motiv pentru care este strict reglementat de băncile centrale.</p>
+
+<h3>Circulația banilor în economie</h3>
+
+<p>Banii circulă constant între diferiți agenți economici: gospodării, firme, stat și sistemul financiar. Această circulație este esențială pentru funcționarea economiei. Dacă banii stagnează excesiv (de exemplu, sunt acumulați fără a fi investiți), activitatea economică încetinește.</p>
+
+<p>Conceptul de <strong>viteză a banilor</strong> măsoară de câte ori o unitate monetară este utilizată într-o perioadă dată pentru tranzacții. O viteză ridicată stimulează creșterea economică, în timp ce o viteză scăzută poate semnala recesiune sau incertitudine.</p>
+
+<h3>Inflația și puterea de cumpărare</h3>
+
+<p>Inflația reprezintă creșterea generalizată a prețurilor într-o economie și este una dintre cele mai importante consecințe ale modului în care funcționează banii. Atunci când masa monetară crește mai rapid decât producția de bunuri și servicii, puterea de cumpărare a banilor scade.</p>
+
+<p>Inflația moderată este considerată normală și chiar necesară pentru funcționarea economiei. Inflația excesivă, însă, erodează economiile, distorsionează semnalele de preț și afectează încrederea în moneda națională.</p>
+
+<h3>Banii ca instrument de putere economică</h3>
+
+<p>Banii nu sunt neutri. Modul în care sunt creați, distribuiți și controlați influențează distribuția bogăției și a puterii în societate. Accesul la credit, stabilitatea monetară și politicile fiscale pot accelera sau frâna dezvoltarea economică a indivizilor și a statelor.</p>
+
+<p>Din acest motiv, înțelegerea modului în care funcționează banii nu este doar o chestiune financiară, ci și una politică și socială.</p>
+
+<h3>Concluzie</h3>
+
+<p>Banii sunt coloana vertebrală a economiei moderne. Ei funcționează ca un limbaj comun al valorii, un mecanism de coordonare socială și un instrument de politică economică. Fără a înțelege cum sunt creați, controlați și utilizați, individul rămâne un simplu utilizator pasiv într-un sistem complex.</p>
+
+<p>Educația financiară începe cu această înțelegere fundamentală. Abia după ce înțelegi cum funcționează banii poți înțelege cu adevărat investițiile, piețele financiare și deciziile economice raționale. Restul este doar zgomot.</p>
+
+
+        `
+            },
             '2-1': {
               title: '2.1 Bias-urile cognitive',
               icon: 'fas fa-brain',
-              video: 'curs3.mp4',
+              video: 'curs4.mp4',
               text: `
                 <h3>🧠 Bias-urile cognitive</h3>
                 <p>Aici explici cum deciziile sunt influențate de emoții și pattern-uri.</p>
@@ -584,16 +787,30 @@ window.addEventListener('load', enableSoundOnFirstTouch);
           videoEl.load();
         }
       
-        // ===== Load lesson =====
         function loadLesson(id){
-          const lessons = getLessons();
-          const lesson = lessons[id] || lessons[DEFAULT_LESSON];
-      
-          document.getElementById('lessonTitle').textContent = lesson.title;
-          document.querySelector('.lesson-icon i').className = lesson.icon;
-          setVideoSrc(lesson.video);
-          document.getElementById('lessonText').innerHTML = lesson.text;
-        }
+  const lessons = getLessons();
+  const lesson = lessons[id] || lessons[DEFAULT_LESSON];
+
+  document.getElementById('lessonTitle').textContent = lesson.title;
+  document.querySelector('.lesson-icon i').className = lesson.icon;
+
+  const videoEl = document.getElementById('lessonVideo');
+  const wrapper = videoEl.closest('.video-wrapper');
+
+  if (lesson.video) {
+    wrapper.style.display = 'block';
+    setVideoSrc(lesson.video);
+  } else {
+    wrapper.style.display = 'none';
+    // oprește video-ul dacă era dinainte
+    videoEl.pause();
+    videoEl.removeAttribute('src'); // optional
+    videoEl.load();
+  }
+
+  document.getElementById('lessonText').innerHTML = lesson.text;
+}
+
       
         // ===== Boot =====
         function bootLesson(){
