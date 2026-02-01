@@ -1261,7 +1261,226 @@ section.hero#landing .hero-cta{
     font-size: 0.98rem;
   }
 }
+/* =========================
+   PRESS / ABOUT ME SECTION
+========================= */
+.press-section{
+  padding: 4.5rem 0 2.5rem !important;
+  background: transparent !important;
+  position: relative;
+}
 
+.press-header{
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 2.2rem;
+}
+
+.press-title{
+  font-size: 3rem !important;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  background: var(--secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.press-subtitle{
+  color: rgba(255,255,255,0.82);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.press-grid{
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.7rem;
+  align-items: stretch;
+}
+
+/* card generic */
+.press-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 26px;
+  padding: 1.7rem 1.6rem;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 2px 0 rgba(255,255,255,0.06) inset;
+  backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* profil */
+.press-profile-top{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.press-avatar{
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  flex: 0 0 auto;
+}
+
+.press-avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.press-profile-meta strong{
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.96);
+}
+
+.press-profile-meta span{
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(255,255,255,0.72);
+  font-weight: 700;
+}
+
+.press-bullets{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4rem 0;
+}
+
+.press-bullets li{
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.55rem 0;
+}
+
+.press-bullets i{
+  margin-top: 0.25rem;
+  color: rgba(0,255,136,0.95);
+  filter: drop-shadow(0 0 12px rgba(0,255,136,0.22));
+}
+
+.press-bullets span{
+  color: rgba(255,255,255,0.86);
+  line-height: 1.55;
+}
+
+/* articol */
+.press-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.88);
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 1rem;
+}
+
+.press-article-title{
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.96);
+  margin-bottom: 0.55rem;
+  letter-spacing: -0.02em;
+}
+
+.press-article-desc{
+  color: rgba(255,255,255,0.78);
+  line-height: 1.65;
+  margin-bottom: 1.05rem;
+}
+
+/* thumbnail */
+.press-thumb{
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  margin-bottom: 1.2rem;
+}
+
+.press-thumb img{
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.press-actions{
+  display: flex;
+  gap: 0.8rem;
+}
+
+.press-link{
+  width: 100%;
+  justify-content: center;
+}
+
+.press-note{
+  margin-top: 0.9rem;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .press-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px){
+  .press-title{ font-size: 2.15rem !important; }
+  .press-subtitle{ font-size: 0.98rem; }
+  .press-card{ backdrop-filter: none !important; padding: 1.35rem 1.25rem; border-radius: 22px; }
+  .press-thumb img{ height: 180px; }
+}
+.section-divider{
+  margin: 6px auto 0 !important;
+}
+#about-me,
+.cine-sunt{
+  margin-top: 2.2rem !important;
+  padding-top: 0 !important;
+}
+
+/* 1) taie orice overflow orizontal, dar NU strică layout-ul */
+html, body{
+  width: 100%;
+  overflow-x: clip; /* mai bun decât hidden pe Safari nou */
+}
+
+/* fallback dacă unele device-uri nu știu clip */
+@supports not (overflow: clip){
+  html, body{ overflow-x: hidden; }
+}
+
+/* 2) glow-ul de la reviews să nu mai împingă pe lateral */
+.reviews-section{
+  overflow-x: clip !important;   /* taie doar pe X */
+  overflow-y: visible !important;/* păstrează vibe-ul pe Y */
+}
+
+/* 3) NU mai folosi inset cu -80px pe laterale */
+.reviews-section::before{
+  left: 0 !important;
+  right: 0 !important;
+  top: -220px !important;
+  bottom: -120px !important;
+}
 
     </style>
 </head>
@@ -1310,6 +1529,7 @@ section.hero#landing .hero-cta{
     </section>
     <div class="section-divider"></div>
 
+    
     <!-- EXPLICATII (SUB HERO) -->
 <section id="about-course">
     <div class="about-wrap">
@@ -1361,30 +1581,93 @@ section.hero#landing .hero-cta{
       </div>
     </div>
   </section>
+  <div class="section-divider"></div>
+  <!-- WHO AM I / PRESA -->
+<section id="about-me" class="press-section">
+    <div class="container">
   
-
-    <!-- FEATURES PERFECT ALINIATE -->
-    <section id="features" class="features" style="padding: 5rem 0;">
-        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: start;">
-            <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
-                <i class="fas fa-calendar-check" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #00d4ff; display: block;"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">Program structurat 6 luni</h3>
-                <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Program pas cu pas care te duce de la bază la strategie: lecții, exemple reale și plan clar de acțiune.</p>
+      <div class="press-header">
+        <h2 class="press-title">Cine sunt</h2>
+        <p class="press-subtitle">
+          Investitor multi-asset și creator de conținut. Construiesc Școala de Investiții ca un program aplicat,
+          centrat pe disciplină, management de risc și progres clar.
+        </p>
+      </div>
+  
+      <div class="press-grid">
+  
+        <!-- Card profil -->
+        <div class="press-card press-profile">
+          <div class="press-profile-top">
+            <div class="press-avatar">
+              <img src="despremine.jpg" alt="Sofian Covan">
             </div>
-
-            <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
-                <i class="fas fa-graduation-cap" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #00ff88; display: block;"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">4 Module esențiale</h3>
-                <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Educație Financiară <br>Psihologia Investitorului<br> Istoria Banilor<br>Investițiile Pas cu Pas (portofoliu + risc).</p>
+            <div class="press-profile-meta">
+              <strong>Sofian Covan</strong>
+              <span>Investitor Multi-Asset</span>
             </div>
-
-            <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
-                <i class="fas fa-user-tie" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #ffd700; display: block;"></i>
-                <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">Mentorat & suport live</h3>
-                <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Seminar săptămânal aplicat + 1 apel lunar 1:1 pentru ghidaj și feedback pe progres</p>
-            </div>
+          </div>
+  
+          
+  
+          <div class="about-me-text">
+            <p>
+              Am început să studiez <strong>economia și investițiile </strong>din adolescență, într-un context
+              în care educația financiară era aproape inexistentă. Am învățat din greșeli,
+              din disciplină și din timp investit constant, nu din promisiuni rapide.
+            </p>
+          
+            <p>
+                Astăzi administrez independent un portofoliu multi-asset evaluat la
+                <strong>șase cifre</strong>, construit pe reguli clare, disciplină constantă, răbdare și control riguros al riscului.
+            </p>
+          
+            <p>
+              Dar dincolo de rezultate, misiunea mea este alta: să ajut tinerii să înțeleagă
+              banii, să ia decizii raționale și să nu repete greșelile pe care nimeni nu ni le-a explicat.
+            </p>
+          
+            <p>
+              <strong>Școala de Investiții</strong> este modul meu de a contribui la creșterea
+              nivelului de educație financiară din România — prin structură, claritate și aplicare reală.
+            </p>
+          </div>
+          
+          
+          
         </div>
-    </section>
+  
+        <!-- Card presă (ZF) -->
+        <article class="press-card press-article">
+          <div class="press-badge">
+            <i class="fas fa-newspaper"></i> Presă
+          </div>
+  
+          <h3 class="press-article-title">Apariție în Ziarul Financiar</h3>
+          <p class="press-article-desc">
+            Un material despre parcursul meu ca investitor și creator de conținut, și despre direcția mea în educația financiară.
+          </p>
+  
+          <!-- opțional: thumbnail/screenshot -->
+          <!-- Recomand: pui o poză/screenshot al articolului (fără text mult), ex: zf-article.jpg -->
+          <div class="press-thumb">
+            <img src="articol-zf.png" alt="Ziarul Financiar - articol">
+          </div>
+  
+          <div class="press-actions">
+            <a class="btn btn-secondary press-link" href="https://www.zf.ro/zf-gen-z/care-este-povestea-lui-sofian-covan-tanarul-care-a-ales-sa-isi-puna-23027584" target="_blank" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i> Vezi articolul
+            </a>
+          </div>
+  
+          <p class="press-note">
+            *Link extern — se deschide într-o filă nouă.
+          </p>
+        </article>
+  
+      </div>
+    </div>
+  </section>
 
     <style>
         /* FEATURES HOVER */
@@ -1560,8 +1843,20 @@ section.hero#landing .hero-cta{
   color: rgba(255,255,255,0.65) !important;
 }
 }
+.about-me-text p{
+  color: rgba(255,255,255,0.88);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
+.about-me-text strong{
+  color: #ffffff;
+  font-weight: 800;
+}
 
     </style>
+    
   <div class="section-divider"></div>
     <!-- PRODUCT -->
     <section id="product">
@@ -1654,6 +1949,28 @@ section.hero#landing .hero-cta{
     </section>
 <!-- REVIEWS -->
 
+  <!-- FEATURES PERFECT ALINIATE -->
+  <section id="features" class="features" style="padding: 5rem 0;">
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: start;">
+        <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
+            <i class="fas fa-calendar-check" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #00d4ff; display: block;"></i>
+            <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">Program structurat 6 luni</h3>
+            <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Program pas cu pas care te duce de la bază la strategie: lecții, exemple reale și plan clar de acțiune.</p>
+        </div>
+
+        <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
+            <i class="fas fa-graduation-cap" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #00ff88; display: block;"></i>
+            <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">4 Module esențiale</h3>
+            <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Educație Financiară <br>Psihologia Investitorului<br> Istoria Banilor<br>Investițiile Pas cu Pas (portofoliu + risc).</p>
+        </div>
+
+        <div class="feature-card" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem; text-align: center; height: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: all 0.4s ease;">
+            <i class="fas fa-user-tie" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: #ffd700; display: block;"></i>
+            <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: white; font-weight: 700;">Mentorat & suport live</h3>
+            <p style="font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">Seminar săptămânal aplicat + 1 apel lunar 1:1 pentru ghidaj și feedback pe progres</p>
+        </div>
+    </div>
+</section>
 
 <div class="section-blend"></div>
 
